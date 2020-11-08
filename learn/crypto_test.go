@@ -9,7 +9,6 @@ import (
 	"crypto/rsa"
 	"crypto/sha256"
 	"crypto/x509"
-	"encoding/base64"
 	"encoding/pem"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -62,10 +61,8 @@ func TestECSign(t *testing.T) {
 	assert.Nil(t, err)
 	message := "Hello Jay"
 	digest := sha256.Sum256([]byte(message))
-	signature, err := priv.Sign(rand.Reader, digest[:], crypto.SHA256)
-	assert.Nil(t, err, "sign ecdsa")
-	sigHex := base64.StdEncoding.EncodeToString(signature)
-	assert.True(t, len(sigHex) <= 96)
+	_, err = priv.Sign(rand.Reader, digest[:], crypto.SHA256)
+	assert.Nil(t, err, "sha256 with ECDSA")
 }
 
 func TestRSASign(t *testing.T) {
@@ -74,9 +71,6 @@ func TestRSASign(t *testing.T) {
 	assert.Nil(t, err)
 	message := "Hello Jay"
 	digest := sha256.Sum256([]byte(message))
-	signature, err := priv.Sign(rand.Reader, digest[:], crypto.SHA256)
-	assert.Nil(t, err, "sign rsa")
-	sigHex := base64.StdEncoding.EncodeToString(signature)
-	t.Log(sigHex)
-	assert.True(t, len(sigHex) <= 96)
+	_, err = priv.Sign(rand.Reader, digest[:], crypto.SHA256)
+	assert.Nil(t, err, "sha256 with RSA")
 }
