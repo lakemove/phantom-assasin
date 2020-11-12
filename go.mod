@@ -4,6 +4,7 @@ go 1.15
 
 require (
 	github.com/gin-gonic/gin v1.6.3
+	github.com/go-bindata/go-bindata v3.1.2+incompatible // indirect
 	github.com/mattn/go-oci8 v0.0.8
 	github.com/mattn/go-sqlite3 v1.14.4
 	github.com/spf13/cobra v1.0.0

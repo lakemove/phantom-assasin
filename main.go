@@ -60,6 +60,7 @@ func runHttp(cmd *cobra.Command, args []string) {
 		log.Fatal(err)
 	}
 	r := gin.Default()
+	r.StaticFS("/ui", AssetFile())
 	r.GET("/payment-ack", handlePaymentAck)
 	r.POST("/payments", handlePayments)
 	r.Run(addr)

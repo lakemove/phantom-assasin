@@ -56,3 +56,7 @@ func TestDefer(t *testing.T) {
 	defer assertx(2, &val)
 	defer plus1(&val)
 }
+
+func TestBinData(t *testing.T) {
+	assert.Nil(t, nil)
+}
